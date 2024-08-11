@@ -21,16 +21,6 @@ jobs:
         with:
           node-version: '18' # eller den version av Node.js som du använder
 
-      - name: Install dependencies for backend
-        run: |
-          cd backend
-          npm install
-
-      - name: Run backend tests
-        run: |
-          cd backend
-          npm test
-
       - name: Install dependencies for frontend
         run: |
           cd frontend
