@@ -1,0 +1,3 @@
+[submodule "frontend"]
+    path = frontend
+    url = https://github.com/Rodrigo-Sebastian/chas-bank-phpmyadmin-frontend.git
