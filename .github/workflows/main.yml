@@ -42,11 +42,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts
-          path: frontend/out/  # Ändra denna till rätt mapp om den inte stämmer
+          path: frontend/.next/  # Ändra denna till rätt mapp om den inte stämmer
 
       - name: Deploy to AWS
         run: |
-          aws s3 sync frontend/out/ s3://chas-banksite --delete
+          aws s3 sync frontend/.next/ s3://chas-banksite --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
