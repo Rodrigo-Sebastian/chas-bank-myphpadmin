@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -17,11 +18,14 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
+      - name: List files in frontend
+        run: ls -la frontend
+
+      - name: Install dependencies in frontend
         run: npm install
         working-directory: frontend
 
-      - name: Build project
+      - name: Build project in frontend
         run: npm run build
         working-directory: frontend
 
@@ -30,4 +34,5 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         run: |
-          aws s3 sync ./frontend/.next s3://chas-banksite --delete
+          aws s3 sync ./frontend/.next s3://your-bucket-name --delete
+
