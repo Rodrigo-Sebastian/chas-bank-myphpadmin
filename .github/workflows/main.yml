@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI
 
 on:
   push:
@@ -15,13 +15,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          submodules: 'true'
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14' # eller den version av Node.js som du använder
+          node-version: '18' # eller den version av Node.js som du använder
 
       - name: Install dependencies for backend
         run: |
