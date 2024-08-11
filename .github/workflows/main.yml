@@ -13,21 +13,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          submodules: true  # Klona även submoduler
+          submodules: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      - name: Install dependencies in frontend
-        run: ls -la frontend
+      - name: Install dependencies
+        run: npm install
+        working-directory: frontend
 
-      - name: Build project in frontend
+      - name: Build project
         run: npm run build
         working-directory: frontend
 
-      - name: Run test in frontend
+      - name: Run tests
         run: npm test
         working-directory: frontend
 
@@ -38,4 +39,5 @@ jobs:
         run: |
           aws s3 sync ./frontend/.next s3://chas-banksite --delete
         working-directory: frontend
+
 
