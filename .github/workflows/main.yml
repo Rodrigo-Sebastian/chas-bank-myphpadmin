@@ -24,6 +24,10 @@ jobs:
         run: npm install
         working-directory: frontend
 
+      - name: Clean .next directory
+        run: rm -rf .next
+        working-directory: frontend
+
       - name: Build project
         run: npm run build
         working-directory: frontend
@@ -39,5 +43,3 @@ jobs:
         run: |
           aws s3 sync ./frontend/.next s3://chas-banksite --delete
         working-directory: frontend
-
-
