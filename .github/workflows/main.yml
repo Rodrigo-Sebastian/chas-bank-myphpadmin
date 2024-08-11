@@ -15,13 +15,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          submodules: true  # Gör så att submoduler hämtas
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18' # eller den version av Node.js som du använder
 
-      - name: Install dependencies for frontend
+      - name: Install frontend dependencies
         run: |
           cd frontend
           npm install
