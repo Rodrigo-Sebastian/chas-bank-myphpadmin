@@ -16,12 +16,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          submodules: true  # Gör så att submoduler hämtas
+          submodules: true
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # eller den version av Node.js som du använder
+          node-version: '18'
 
       - name: Install frontend dependencies
         run: |
@@ -38,9 +38,15 @@ jobs:
           cd frontend
           npm run build
 
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: frontend/.next/  # Korrekt mapp
+
       - name: Deploy to AWS
         run: |
-          aws s3 sync frontend/out/ s3://chas-banksite --delete
+          aws s3 sync frontend/.next/ s3://chas-banksite --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
