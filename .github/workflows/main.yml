@@ -38,7 +38,8 @@ jobs:
           # Lägg till dina deploy-script här. Exempel:
           # cd backend
           # npm run build
-          # aws s3 sync build/ s3://chas-banksite
+          aws s3 sync frontend/out/ s3://chas-banksite --delete
+
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
